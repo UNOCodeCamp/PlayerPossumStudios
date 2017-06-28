@@ -1,4 +1,4 @@
-player = new Object();
+var player = new Object();
 
 player.x = null;
 player.y = null;

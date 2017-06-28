@@ -1,32 +1,57 @@
+
 var passcode = ~~(Math.random() *1000)
 var tries = 10;
 
-while(guess!= passcode && tries > 0)
+var button = document.getElementById("guess-button")
+ var number = document.getElementById("guess-number")
+ var cluetext = document.getElementById("clues")
+ var attempts = document.getElementById("attempts")
+  
+
+button.addEventListener("click", guessnumber);
+
+function guessnumber()
 {
-    console.log("you have " + tries + " tries left.")
-    console.log("Guess a number bettween 0 to 999");
+    var guess = number.value;
+     tries -= 1;
+    if(tries != 1){
+    attempts.innerHTML = ("You have " + tries + " tries left.")
+    }else if (tries == 1) {
+    attempts.innerHTML = ("You have " + tries + " try left.");
+    }
     
-    var guess = prompt("Enter a number (0-999)");
+   
     
-    tries -= 1;
+   
     
     if(guess == passcode) {
-        console.log("You won!")
+         document.body.innerHTML = "<h1>You Won. The number was " + passcode + "</h1>"
         
-    } else if (tries <= 0) {
-        console.log("You Lost")
         
-    } else giveClue()
+    } else if (tries == 0) {
+        var faroff;
+        if (guess > passcode) {
+            faroff = guess - passcode;
+        } else {
+            faroff = passcode - guess; 
+        }
+        document.body.innerHTML = "<h1>You Lost.</h1> <p>The number was " + passcode + ". You were " + faroff + " far off </p>"
+        
+        
+        
+    } else giveClue(guess)
     
 }
 
-function giveClue() {
+
+function giveClue(guess) {
     if (guess > passcode) {
-        console.log("Too high")
+        cluetext.innerHTML += "<li> " + " " + guess + " is too high!" + "</li>"
     } else {
-        console.log("Too low")
+       cluetext.innerHTML += "<li> " + " " + guess + " is too low!" + "</li>"
     }
 }
 
 
-console.log(" the number was " + passcode);
+
+

@@ -1,4 +1,4 @@
-scene = new Object();
+var scene = new Object();
 
 scene.image = new Image();
 scene.image.src = "";

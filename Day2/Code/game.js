@@ -1,4 +1,4 @@
-game = new Object();
+var game = new Object();
 
 
 game.start = function()
