@@ -1,11 +1,12 @@
 var player = new Object();
 
-player.x = null;
-player.y = null;
+player.x = viewport.width/2;
+player.y = viewport.height/2;
 player.image = new Image();
-player.image.src = "";
-player.width = 32;
-player.height = 32;
+player.image.src = "assets/Aimer.png";
+player.width = 64;
+player.height = 64;
+player.isAttacking = false;
 
 
 player.draw = function()
@@ -20,16 +21,16 @@ player.isTouching = function( gameObject )
 	     	 && gameObject.x <= (player.x + player.width)
 		 	 && player.y <= (gameObject.y + gameObject.height)
 		 	 && gameObject.y <= (player.y + player.height) ); 
-}
+};
 
 player.move = function(x, y)
 {
 	player.x = x;
 	player.y = y;
-}
+};
 
 
 player.attack = function()
 {
-
+	player.isAttacking = true;
 };
