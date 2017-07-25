@@ -9,11 +9,13 @@ function Scene()
 
   this.draw = function()
   {
+  
     this.blocks.forEach( (block) => block.draw());
     this.hazards.forEach( (hazard) => hazard.draw());
     exit.draw();
+    
   };
-
+ 
   this.setScene = function(worldData)
   {
     this.height = worldData.length;
@@ -77,6 +79,20 @@ function Scene()
           var h = 32;
           var block = new Block(x, y, w, h, "Assets/Blocks/PlayerPossumBricks.png");
           this.blocks.push(block);
+          }
+          
+          else if (tileID == "L") {
+            var hazard = new FullHazard("Assets/Blocks/Lava/PlayerPossumLava.png");
+            hazard.x = i*32;
+            hazard.y = j*32;
+            this.hazards.push(hazard);
+          }
+          
+          else if (tileID == "?") {
+            var hazard = new FullHazard("Assets/Blocks/Lava/PlayerPossumLava Bottom.png");
+            hazard.x = i*32;
+            hazard.y = j*32;
+            this.hazards.push(hazard);
           }
           
           

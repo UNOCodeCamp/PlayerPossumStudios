@@ -1,4 +1,4 @@
-function Animation(imageArray)
+function Animation(imageArray, fps)
 {
     this.startTime = Date.now();
     this.frameIndex = 0; 
@@ -18,7 +18,7 @@ function Animation(imageArray)
         var index = this.frameIndex;
         
         var now = Date.now();
-        if(now - this.startTime > 75){
+        if(now - this.startTime > fps){
             this.frameIndex = (index + 1) % this.sequence.length;
             this.startTime = now;
         }

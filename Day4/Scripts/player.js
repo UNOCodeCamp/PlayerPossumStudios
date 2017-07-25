@@ -51,6 +51,7 @@ player.move = function(x, y)
     /*Left/Right Movement*/
 
     // player holding left
+    
     if ( (input.keysDown.has(37) || input.keysDown.has(65) ) && player.velX > -player.speed) 
     { 
         player.velX--; 
@@ -66,9 +67,32 @@ player.move = function(x, y)
 
     /*Jumping*/
     if ( (input.keysDown.has(38) || input.keysDown.has(32) ) && !player.isJumping) 
-    { 
+    {
+        if(exit.isTouching(player)) {
+            if (exit.isopened == true) {
+                var age = Date.now();
+                
+                while ((Date.now() - age) < 500) {
+                    
+                    
+                }
+                
+                 game.level++
+             if(game.level < maps.length) {
+                 var level = maps [game.level];
+                 scene = new Scene ();
+                 scene.setScene(level);
+                 exit.doorstate = "closed";
+                 exit.draw();
+                 exit.isopened = false;
+             } else {
+                 game.isOver = true;
+             }
+            }
+        } else {
         player.isJumping = true;
         player.velY = -player.speed*2;
+        }
     }
 
     //Apply terminal velocity

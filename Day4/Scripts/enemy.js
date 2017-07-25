@@ -46,7 +46,7 @@ function CeilingHazard()
 
 };
 
-function FullHazard()
+function FullHazard(source)
 {
 
     this.x = null;
@@ -54,11 +54,10 @@ function FullHazard()
     this.width = 32;
     this.height = 32;
     this.image = new Image();
-    this.image.src = "";
-
+    this.image.src = source;
     this.draw = function()
     {
-        renderer.ctx.drawImage( this.image, this.x, this.y, this.width, this.height ); 
+        renderer.ctx.drawImage(this.image, this.x, this.y, this.width, this.height ); 
     };
 
     this.isTouching = function( gameObject )

@@ -5,6 +5,7 @@ game.timer = 0;
 game.startTime = null;
 game.isOver = false;
 game.level = 0;
+var audio = new Audio("Assets/sfx_wpn_laser 10.wav");
 game.start = function()
 {
     var level = maps[game.level];
@@ -22,25 +23,46 @@ game.main = function()
     {
         game.update();
         renderer.draw();
-        window.requestAnimationFrame(game.main);
+        //window.requestAnimationFrame(game.main);
+    } else {
+        hud.drawGameOver()
+       
     }
-
+    window.requestAnimationFrame(game.main);
+     if (input.keysDown.has(13)) {
+            game.isOver = false;
+            var level = maps[game.level];
+            scene = new Scene();
+            scene.setScene(level);
+        }
 };
 
 // Update game objects
 game.update = function() 
 {
+    viewport.width =  renderer.canvas.width;
+    viewport.height = renderer.canvas.height;
     player.move(input.x, input.y);
     
-    if(exit.isTouching(player)) {
-        
-        var sprite = exit.doorcontrol[exit.doorstate];
-        exit.image = sprite.getImage(); 
-        if(exit.image.src == "Assets/Door/Open/Door Open3.png") {
-             level++;
-             
+    if(exit.isTouching(player) && exit.isopened == false) {
+        exit.doorstate = "open";
+        exit.draw();
+        //console.log(exit.image.src);
+    }
+    if(exit.image.src.includes ("Assets/Door/Open/DoorOpen3.png")) {
+            exit.doorstate = "opened";
+            exit.isopened = true;
+              
         }
-       
+    
+    if(player.x > renderer.canvas.width && clips.playing == false) {
+        game.isOver = true;
+        audio.play();
+    }
+    
+   if(player.y > renderer.canvas.height && clips.playing == false) {
+        game.isOver = true;
+        audio.play();
     }
 
     for ( i in scene.hazards)
@@ -48,8 +70,12 @@ game.update = function()
         var hazard = scene.hazards[i];
         if ( hazard.isTouching(player) )
         {
+            audio.play()
             game.isOver = true;
+            
         }
     }
 };
 
+
+            

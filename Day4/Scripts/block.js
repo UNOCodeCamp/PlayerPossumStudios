@@ -7,11 +7,15 @@ function Block(x,y,width,height, source)
     this.height = height;
     this.image = new Image();
     this.image.src = source;
-    
+
     this.draw = function()
     {
         renderer.ctx.drawImage( this.image , this.x, this.y, this.width, this.height ); 
     };
+    
+    this.erase = function() {
+        renderer.ctx.clearRect(this.x, this.y, this.width, this.height);
+    }
 
     this.isTouching = function( gameObject )
     { 

@@ -56,7 +56,7 @@ var maps = [[
                 "J@          ",
                 "JBBBBBBBBBBJ",
                 "J           ",
-                "J  AA ABBBBJ",
+                "J  A  ABBBBJ",
                 "J          J",
                 "J          J",
                 "JAAAA      J",
@@ -66,4 +66,22 @@ var maps = [[
                 "J BBBBBBBBBJ",
                 "J         !J",
                 "JBBBBBBBBBBJ"
+                ], 
+                
+            [
+                "############",
+                "J          J",
+                "J@   A     J",
+                "J######    J",
+                "J          J",
+                "J       AAAJ",
+                "J          J",
+                "J          J",
+                "J  ###     J",
+                "J  !       J",
+                "J  B   ### J",
+                "JLLLLLLLLLLJ",
+                "J??????????J",
+                "J##########J"
+                    
                 ]];
